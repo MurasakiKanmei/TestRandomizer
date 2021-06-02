@@ -12,10 +12,10 @@ import java.util.Scanner;
 class RandomizedTest {
 
 	/*
-	 * 1. Program opens up and gives the user (teacher) a UI (method created)
+	 * 1. Program opens up and gives the user (teacher) a UI (userInterface)
 	 * 
 	 * 2. Teacher is presented with a question type selection screen (word problem
-	 * or normal math problem) (method created)
+	 * or normal math problem) (questionTypeSelection)
 	 * 
 	 * 3. If normal math problem, program asks teacher for equation (method created)
 	 * 4. Program takes numbers in the equations
@@ -101,7 +101,8 @@ class RandomizedTest {
 	public static int questionTypeSelection() { // Question type selection method
 
 		/*
-		 * This method will handle the selection of the question type (word or normal equation)
+		 * This method will handle the selection of the question type (word or normal
+		 * equation)
 		 */
 
 		@SuppressWarnings("resource")
@@ -175,32 +176,31 @@ class RandomizedTest {
 		return numbers;       
 	}
 
-	public static void problemCalculator() { // Calculator method
+
+	public static int[] problemCalculator(String[] randomizedTestQuestions) {
+		return null; // Calculator method
 		/*
 		 * This method will need to take the randomized numbers and equation from the
 		 * previous method and calculate them
 		 */
 	}
 
-	public static void fileCreation() { // End method
+	public static void fileCreation(String[] randomizedTestQuestions, int[] finalAnswers, int questionNumber) { // End method
 		/*
-		 * If the teacher tells the program not to continue, the program will print out the exam file and end the program.
+		 * If the teacher tells the program not to continue, the program will print out
+		 * the exam file and end the program.
 		 */
 	}
 
-	public static int[] wordProblemVariables(int[] numbers) { // Word problem method
+	public static void wordProblemVariables() { // Word problem method
+
 		/*
 		 * This method takes the numbers from word problems and assigns letter variables
 		 * to them The user will be given the numbers and the corresponding variables
 		 * (e.g. 1 = x, 2 = y) The method will ask the user for the equation, and to
 		 * substitute the numbers in the equation with the variables
 		 */
-		
-		Random r = new Random();
-		
-		//ex: numbers = [42,372,82]
-		int rand = r.nextInt(numbers.length);
-		x = numbers[rand];
-		
-		return numbers;
+
+	}
+
 }
