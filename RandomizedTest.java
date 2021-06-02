@@ -116,13 +116,41 @@ class RandomizedTest {
 		return numbers;
 	}
 
-	public static void randomizer() { // Test randomizer method
+	public static int[] randomizer(int[] numbers) { // Test randomizer method
 		/*
 		 * This method will need to take the numbers from the numberGatherer method It
 		 * will take the numbers and randomize them, before asking the teacher to select
 		 * a number, saved as a variable The teacher will specify the range by which
 		 * they want to randomize the number (e.g. 1-10)
 		 */
+		Scanner s = new Scanner (System.in);
+		Random r = new Random();
+		int randomizedNumber = 0;
+		String confirmation = "yes";
+		
+		//ex: numbers = [32,46,7]
+		while (confirmation.equals("yes") {
+			System.out.println("Choose a number you want to randomize: ");
+			randomizedNumber = s.nextInt();
+			
+			for (int i = 0; i < numbers.length; i++) {
+				if (randomizedNumber == numbers[i]) {
+					System.out.println("Enter a range for the number to be randomized to (ex:4-15): ");
+					String range = s.nextLine();
+					
+					int index = range.indexOf("-");
+					String min = range.substring(0, index);
+					String max = range.substring(index+1, range.length());
+					int x = Integer.parseInt(min);
+					int y = Integer.parseInt(max);
+					int rand = r.nextInt(x-(min-1))+y
+					numbers[i] = rand;	
+				}
+			}
+			System.out.println("Do you want to randomizer another number (yes or no): " );
+			confirmation = s.nextInt();
+		}
+		return numbers;       
 	}
 
 	public static void problemCalculator() { // Calculator method
