@@ -132,8 +132,9 @@ class RandomizedTest {
 		while (confirmation.equals("yes")) {
 			System.out.println("Choose a number you want to randomize: ");
 			randomizedNumber = s.nextInt();
+			int i = 0;
 			
-			for (int i = 0; i < numbers.length; i++) {
+			for (i = 0; i < numbers.length; i++) {
 				if (randomizedNumber == numbers[i]) {
 					System.out.println("Enter a range for the number to be randomized to (ex:4-15): ");
 					String range = s.nextLine();
