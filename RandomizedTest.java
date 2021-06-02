@@ -129,7 +129,7 @@ class RandomizedTest {
 		String confirmation = "yes";
 		
 		//ex: numbers = [32,46,7]
-		while (confirmation.equals("yes") {
+		while (confirmation.equals("yes")) {
 			System.out.println("Choose a number you want to randomize: ");
 			randomizedNumber = s.nextInt();
 			
