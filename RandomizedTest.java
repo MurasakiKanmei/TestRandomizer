@@ -56,15 +56,36 @@ class RandomizedTest {
 		String equation; // Variable for holding the equation itself
 		int problemType; // Variable for determining whether the question is a word problem or normal
 							// problem
+		int questionNumber = 0;
+		int keepGoing = 0;
 		int[] testNumbers = null; // Array for holding the numbers to be randomized
+		int[] finalAnswers = null;
 		String[] testQuestions = null; // Array for holding the completed, calculated questions
+		String[] randomizedTestQuestions = null;
 
-		problemType = questionTypeSelection();
-		if (problemType == 1) { // Calls number gatherer method for equation question
-			System.out.println("Enter your equation:");
-			testNumbers = numberGatherer(reader.nextLine());
-		} else { // Calls word problem and number gatherer for word problem
-			
+		while(keepGoing == 0) {
+			do {
+				problemType = questionTypeSelection();
+			} while (problemType < 1 || problemType > 2); // Error check
+			if (problemType == 1) { // Calls number gatherer method for equation question
+				System.out.println("Enter your equation:");
+				testNumbers = numberGatherer(reader.nextLine());
+				randomizedTestQuestions = randomizer(testNumbers);
+				finalAnswers = problemCalculator(randomizedTestQuestions);
+				fileCreation(randomizedTestQuestions, finalAnswers, questionNumber);
+			}
+
+			if (problemType == 2) { // Calls word problem and number gatherer methods for word problem
+				System.out.println("Enter your word problem.");
+				testNumbers = numberGatherer(reader.nextLine());
+				wordProblemVariables();
+				randomizedTestQuestions = randomizer(testNumbers);
+				finalAnswers = problemCalculator(randomizedTestQuestions);
+				fileCreation(randomizedTestQuestions, finalAnswers, questionNumber);
+			}
+	
+		System.out.println("Enter 0 to continue, or enter any other number to exit");
+		keepGoing = reader.nextInt();			
 		}
 	}
 
