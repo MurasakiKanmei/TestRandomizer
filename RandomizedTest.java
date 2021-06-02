@@ -138,7 +138,7 @@ class RandomizedTest {
 		 */
 	}
 
-	public static int wordProblemVariables(int[] numbers) { // Word problem method
+	public static int[] wordProblemVariables(int[] numbers) { // Word problem method
 		/*
 		 * This method takes the numbers from word problems and assigns letter variables
 		 * to them The user will be given the numbers and the corresponding variables
@@ -146,12 +146,11 @@ class RandomizedTest {
 		 * substitute the numbers in the equation with the variables
 		 */
 		
+		Random r = new Random();
 		
 		//ex: numbers = [42,372,82]
-		for (int i = 0; i < numbers.length; i++) {
-			
-		}
-
-	}
-
+		int rand = r.nextInt(numbers.length);
+		x = numbers[rand];
+		
+		return numbers;
 }
