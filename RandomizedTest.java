@@ -116,7 +116,7 @@ class RandomizedTest {
 		return numbers;
 	}
 
-	public static void randomizer(int[] numbers) { // Test randomizer method
+	public static int[] randomizer(int[] numbers) { // Test randomizer method
 		/*
 		 * This method will need to take the numbers from the numberGatherer method It
 		 * will take the numbers and randomize them, before asking the teacher to select
