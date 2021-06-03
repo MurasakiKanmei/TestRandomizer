@@ -165,7 +165,7 @@ class RandomizedTest {
 					String max = range.substring(index+1, range.length());
 					int x = Integer.parseInt(min);
 					int y = Integer.parseInt(max);
-					int rand = r.nextInt(x-(min-1))+y
+					int rand = r.nextInt(x-(min-1))+y;
 					numbers[i] = rand;	
 				}
 			}
