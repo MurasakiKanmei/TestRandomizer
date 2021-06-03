@@ -150,7 +150,6 @@ class RandomizedTest {
 		int randomizedNumber = 0;
 		String confirmation = "yes";
 		
-		//ex: numbers = [32,46,7]
 		while (confirmation.equals("yes")) {
 			System.out.println("Choose a number you want to randomize: ");
 			randomizedNumber = s.nextInt();
@@ -192,7 +191,7 @@ class RandomizedTest {
 		 */
 	}
 
-	public static void wordProblemVariables() { // Word problem method
+	public static void wordProblemVariables(int[] numbers) { // Word problem method
 
 		/*
 		 * This method takes the numbers from word problems and assigns letter variables
@@ -200,7 +199,19 @@ class RandomizedTest {
 		 * (e.g. 1 = x, 2 = y) The method will ask the user for the equation, and to
 		 * substitute the numbers in the equation with the variables
 		 */
+		Scanner s = new Scanner (System.in);
+		 
+		String[] strNumbers = new String[numbers.length];
+		for (int i = 0; i < numbers.length; i++) {
+		    strNumbers[i] = String.valueOf(numbers[i]);
+		}
 
+		System.out.println("Input variables (e.g. x,y,z) for each number (Don't use the same variable more than once)");
+		for (int i = 0; i < strNumbers.length; i++) {
+			System.out.print("Input variable for " + strNumbers[i] + ": ");
+			String variable = s.nextLine();
+			strNumbers[i] = variable;
+		}
+		System.out.println(Arrays.toString(strNumbers));
 	}
-
 }
