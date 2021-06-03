@@ -151,13 +151,14 @@ class RandomizedTest {
 		String confirmation = "yes";
 		
 		while (confirmation.equals("yes")) {
-			System.out.println("Choose a number you want to randomize: ");
+			System.out.print("Choose a number you want to randomize: ");
 			randomizedNumber = s.nextInt();
+			s.nextLine();
 			int i = 0;
 			
 			for (i = 0; i < numbers.length; i++) {
 				if (randomizedNumber == numbers[i]) {
-					System.out.println("Enter a range for the number to be randomized to (ex:4-15): ");
+					System.out.print("Enter a range for the number to be randomized to (ex:4-15): ");
 					String range = s.nextLine();
 					
 					int index = range.indexOf("-");
@@ -165,13 +166,14 @@ class RandomizedTest {
 					String max = range.substring(index+1, range.length());
 					int x = Integer.parseInt(min);
 					int y = Integer.parseInt(max);
-					int rand = r.nextInt(x-(min-1))+y;
+					int rand = r.nextInt(y)+x;
 					numbers[i] = rand;	
 				}
 			}
-			System.out.println("Do you want to randomizer another number (yes or no): " );
-			confirmation = s.nextInt();
+			System.out.print("Do you want to randomizer another number (yes or no): ");
+			confirmation = s.nextLine();
 		}
+		System.out.println("These are the new numbers: " + Arrays.toString(numbers));
 		return numbers;       
 	}
 
