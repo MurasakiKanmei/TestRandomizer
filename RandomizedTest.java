@@ -90,7 +90,7 @@ class RandomizedTest {
 				System.out.println("Enter your word problem.");
 				testNumbers = numberGatherer(reader.nextLine());
 				randomizedTestQuestions = randomizer(testNumbers);
-				wordProblemVariables();
+				wordProblemVariables(testNumbers);
 				// finalAnswers = problemCalculator(randomizedTestQuestions);
 				fileCreation(randomizedWordQuestions, questionNumber);
 				wordProblemQuestionNumber++;
