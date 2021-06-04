@@ -94,6 +94,14 @@ class RandomizedTest {
 		}
 	}
 
+	/* 
+	 * @Author - Emily
+	 * JTextField and JButton for graphics
+	 * 
+	 * @param : text and message
+	 * @return : graphics of the button or text field
+	 */
+
 	public static void userInterface() { // User interface graphics method
 	/*
 	 * This method will be used to handle the GUI and user interface. This method
@@ -101,7 +109,8 @@ class RandomizedTest {
 	 */
 
 	// JFrame and JLabel will be important
-	// myFrame frame = new MyFrame(); this could be called in the main
+	// myFrame frame = new MyFrame(); 
+
 
 		// textbox field
 		MyFrame(){
@@ -132,6 +141,45 @@ class RandomizedTest {
 
 			//
 
+		}
+
+		// Button Field
+
+		MyFrame(){
+		
+			ImageIcon icon = new ImageIcon("point.png");
+			ImageIcon icon2 = new ImageIcon("face.png");
+			
+			label = new JLabel();
+			label.setIcon(icon2);
+			label.setBounds(150, 250, 150, 150);
+			label.setVisible(false);
+			
+			// Button Field JButton
+			button = new JButton();
+			button.setBounds(100, 100, 250, 100);
+			button.addActionListener(this);
+
+			// Button Text
+			button.setText("I'm a button!");
+			
+			//JButton
+			button.setFocusable(false);
+			button.setIcon(icon);
+			button.setHorizontalTextPosition(JButton.CENTER);
+			button.setVerticalTextPosition(JButton.BOTTOM);
+			button.setFont(new Font("Comic Sans",Font.BOLD,25));
+			button.setIconTextGap(-15);
+			button.setForeground(Color.cyan);
+			button.setBackground(Color.lightGray);
+			button.setBorder(BorderFactory.createEtchedBorder());
+			
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setLayout(null);
+			this.setSize(500,500);
+			this.setVisible(true);
+			this.add(button);
+			this.add(label);
 		}
 	}
 
