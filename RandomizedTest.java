@@ -285,7 +285,7 @@ class RandomizedTest {
 		 */
 	}
 
-		public static void wordProblemVariables(int[] testNumbers) { // Word problem method
+		public static String[] wordProblemVariables(int[] testNumbers) { // Word problem method
 
 		/*
 		 * This method takes the numbers from word problems and assigns letter variables
