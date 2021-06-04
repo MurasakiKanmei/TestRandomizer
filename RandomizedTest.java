@@ -95,12 +95,44 @@ class RandomizedTest {
 	}
 
 	public static void userInterface() { // User interface graphics method
-		/*
-		 * This method will be used to handle the GUI and user interface. This method
-		 * will likely not be finished until the command line is done.
-		 */
+	/*
+	 * This method will be used to handle the GUI and user interface. This method
+	 * will likely not be finished until the command line is done.
+	 */
 
-		// JFrame and JLabel will be important
+	// JFrame and JLabel will be important
+	// myFrame frame = new MyFrame(); this could be called in the main
+
+		// textbox field
+		MyFrame(){
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.setLayout(new FlowLayout());
+
+				// Button to submit
+				JButton button = new JButton("Submit");
+				button.addActionListener(this);
+
+				// Textfield
+				JTextField textField = new JTextField();
+				textField.setPreferredSize(new Dimension(250,40));
+
+				this.add(button);
+				this.add(textField);
+				this.pack();
+				this.setVisible(true);
+			}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == button) {
+				System.out.println("Welcome " + textField.getText());
+				//button.setEnabled(false);
+				//textField.setEditable(false)
+			}
+
+			//
+
+		}
 	}
 
 	public static int questionTypeSelection() { // Question type selection method
