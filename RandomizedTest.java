@@ -9,11 +9,22 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTable;  
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 
 class RandomizedTest {
 
@@ -56,21 +67,21 @@ class RandomizedTest {
 	 */
 
 	static Scanner reader = new Scanner(System.in);
+	static int problemType; // Variable for determining whether the question is a word problem or normal
+	  			// problem
+	static int[] randomizedTestQuestions = null;
+	static String[] randomizedWordQuestions = null;
+	static int[] testNumbers = null; // Array for holding the numbers to be randomized
+	static String equate;   // Holds what type of equation will be created i.e. addition, subtraction, multiplication, division
 
-		public static void main(String[] args) {
+		public static void main(String[] args) throws IOException {
 
 		String equation; // Variable for holding the equation itself
-		int problemType; // Variable for determining whether the question is a word problem or normal
-							// problem
 		int questionNumber = 0;
 		int keepGoing = 0;
 		int calculationQuestionNumber = 0;
 		int wordProblemQuestionNumber = 0;
-		int[] testNumbers = null; // Array for holding the numbers to be randomized
-		// int[] finalAnswers = null;
 		String[] testQuestions = null; // Array for holding the completed, calculated questions
-		int[] randomizedTestQuestions = null;
-		String[] randomizedWordQuestions = null;
 
 		while(keepGoing == 0) {
 			do {
@@ -80,8 +91,7 @@ class RandomizedTest {
 				System.out.println("Enter your equation:");
 				testNumbers = numberGatherer(reader.nextLine());
 				randomizedTestQuestions = randomizer(testNumbers);
-				// finalAnswers = problemCalculator(randomizedTestQuestions);
-				fileCreation(randomizedTestQuestions, questionNumber);
+				fileCreation();
 				calculationQuestionNumber++;
 				
 			}
@@ -91,8 +101,7 @@ class RandomizedTest {
 				testNumbers = numberGatherer(reader.nextLine());
 				randomizedTestQuestions = randomizer(testNumbers);
 				wordProblemVariables(testNumbers);
-				// finalAnswers = problemCalculator(randomizedTestQuestions);
-				fileCreation(randomizedWordQuestions, questionNumber);
+				fileCreation();
 				wordProblemQuestionNumber++;
 			}
 	
@@ -270,23 +279,175 @@ class RandomizedTest {
 		System.out.println("These are the new numbers: " + Arrays.toString(testNumbers));
 		return testNumbers;
 	}
+	/* Changes the type of equation to be +,-,*,/ in the form of a string message
+	 * 
+	 * @param rand - creates a random number in the range of 1-5
+	 * @param change - is the value being created and returned
+	 * 
+	 * @return - returns the message based on the random number to determine equation type
+	* */
+	public static String changingEquation(String change){
+		Random rand = new Random();
+		int random = rand.nextInt(5)+1;
 
-	/* public static int[] problemCalculator(String[] randomizedTestQuestions) {
-		return null; // Calculator method
-		/*
-		 * This method will need to take the randomized numbers and equation from the
-		 * previous method and calculate them
-		 */
-	}
-	*/ 
-	public static void fileCreation(String[] randomizedTestQuestions, int[] finalAnswers, int questionNumber) { // End method
+		if (random == 1){
+		    return " plus ";
+		}
+		else if (random == 2){
+		    return " subtracted by ";
+		}
+		else if (random == 3){
+		    return " multiplied by ";
+		}
+		else{
+		    return " divided by ";
+		}
+	    }
+	/* creates the file including the title "Randomized Test, mark values table, preamble for test, and test questions
+	 * created inside code in the form of a .docx file (word file)
+	 * 
+	 * @param p(1,2,3,4) - used for creating a new paragraph as well as settings for paragraph
+	 * @param r(1,2,3,4) - used to set values inside paragraph i.e. font size, bold, text, etc.
+	 * @param tab - used to create the mark table
+	 * @param row - used to generate and add values inside the rows of the table
+	 * @param element - used as a temporary variable to store array values and use them inside loop
+	 * @param out - creates the file with all the code inside this method
+	 * */
+	public static void fileCreation() throws IOException { // End method
 		/*
 		 * If the teacher tells the program not to continue, the program will print out
 		 * the exam file and end the program.
 		 */
+		// Beginning of code, creates a new XWPF Document (word file)
+		try (XWPFDocument doc = new XWPFDocument()) {
+			
+		    // Creates the Date and Name at the top of the page
+		    // Creates the paragraph using variable p1	
+		    XWPFParagraph p1 = doc.createParagraph();
+		    // Setting alignment
+		    p1.setAlignment(ParagraphAlignment.LEFT);
+		    // Generating the text line
+		    doc.createParagraph();
+		    XWPFRun r1 = p1.createRun();
+		    // Set Text to Bold and font size to 10 for the Date and Name
+		    r1.setBold(true);                                // Adding bold to text
+		    r1.setFontSize(10);                              // Setting font size
+		    r1.setText("Date:________________________");     // Inputting the text
+		    r1.setFontFamily("Courier");                     // Setting the font style
+		    doc.createParagraph();
+		    r1.setBold(true);
+		    r1.setFontSize(10);
+		    r1.setText("                 Name:________________________");
+		    r1.setFontFamily("Courier");
+
+		    // Creating and aligning the title to the center with a underline beneath it
+		    XWPFParagraph p2 = doc.createParagraph();
+		    p2.setAlignment(ParagraphAlignment.CENTER);
+		    doc.createParagraph();
+
+		    XWPFRun r2 = p2.createRun();
+		    r2.setBold(true);
+		    // Adding italics to text
+		    r2.setItalic(true);
+		    r2.setFontSize(22);
+		    r2.setText("Randomized Test");
+		    doc.createParagraph();
+		    r2.setText("                  ________________________________");    // Cosmetic only
+		    r2.setFontFamily("Courier");
+
+		    // Creating Table for mark values 
+		    XWPFTable tab = doc.createTable();  
+		    XWPFTableRow row = tab.getRow(0); // First row  
+		    // Columns  
+		    row.getCell(0).setText("Categories:");  
+		    row.addNewTableCell().setText("Mark:");  
+		    row.addNewTableCell().setText("Mark out of:");  
+		    row = tab.createRow(); // Second Row  
+		    row.getCell(0).setText("Knowledge/Understanding");  
+		    row.getCell(1).setText("");  
+		    row.getCell(2).setText(" " + 15);          // Setting baseline maximum mark, can be changed in code if needed
+		    row = tab.createRow(); // Third Row  
+		    row.getCell(0).setText("Thinking");  
+		    row.getCell(1).setText("");  
+		    row.getCell(2).setText(" " + 13); 
+		    row = tab.createRow(); // Fourth Row  
+		    row.getCell(0).setText("Communication");  
+		    row.getCell(1).setText("");  
+		    row.getCell(2).setText(" " + 8); 
+		    row = tab.createRow(); // Fifth Row  
+		    row.getCell(0).setText("Application");  
+		    row.getCell(1).setText("");  
+		    row.getCell(2).setText(" " + 14);
+		    doc.createParagraph(); 
+
+		    // Creating the preamble in the colour red with a underline beneath it
+		    XWPFParagraph p3 = doc.createParagraph();
+		    //Set color for second paragraph
+		    XWPFRun r3 = p3.createRun();
+		    r3.setText("Please be advised that this test is completely different from any of your peers. You will not be able to cheat. ");
+		    r3.setText("You are permitted only the use of a calculator, pencil, eraser, highlighters, and pens. ");
+		    r3.setText("You may begin as soon as I say so. Write your name and date first and then you may begin.");
+		    doc.createParagraph();
+		    r3.setText("                          ___________________________________________________________________________");    // Cosmetic only
+		    // Changes text colour to red
+		    r3.setColor("ff0000");
+
+		    // Outputing choices
+		    // Outputing the number calculations into file
+		    if(problemType == 1){
+			// Changes the array values to be able to be iterated
+			for(int element : testNumbers) {
+			    for(int rando : randomizedTestQuestions){
+
+				XWPFParagraph p = doc.createParagraph();
+				XWPFRun run = p.createRun();
+
+				//Printing the inputted number and the randomized numbers
+				run.setText("What is " + element + changingEquation(equate) + rando + "?");
+				// Added to create spacing between each question    // the new method if needed
+				for(int i = 0; i < 10; i++){
+				    doc.createParagraph();                          // Spaces between each question, 10 line space between each question
+				}
+			    }
+			}
+		    }
+		    // Outputing the word problems into file
+		    else if(problemType == 2){
+			for(String element : randomizedWordQuestions){
+
+			    XWPFParagraph p = doc.createParagraph();
+			    XWPFRun run = p.createRun();
+
+			    // Printing inputted word questions
+			    run.setText(element);
+			    for(int i = 0; i < 10; i++){ 
+				doc.createParagraph();
+			    }
+			}
+		    }
+		    // Creating the final message to confirm the file and its contents have ended
+		    XWPFParagraph p4 = doc.createParagraph();
+		    XWPFRun r4 = p4.createRun();
+		    p4.setAlignment(ParagraphAlignment.CENTER);
+
+		    // Set Text to Bold and font size to 15
+		    r4.setBold(true);
+		    r4.setFontSize(15);
+		    r4.setText("This is the end of the test");
+		    r4.setFontFamily("Courier");
+		    p4.setPageBreak(true);  
+
+		    // In order to produce a new File, must close the current file
+		    // Prints everything within this method into the file
+		    // The destination path needs to be changed based on user and specific file path
+		    // IMPORTANT: to generate file, must change the C:\ path to computer that is using code
+		    try (FileOutputStream out = new FileOutputStream("C:\\Users\\RandomizedTest.docx")) {
+			doc.write(out);
+		    }
+		}
 	}
 
-		public static String[] wordProblemVariables(int[] testNumbers) { // Word problem method
+	public static String[] wordProblemVariables(int[] testNumbers) { // Word problem method
 
 		/*
 		 * This method takes the numbers from word problems and assigns letter variables
