@@ -9,6 +9,11 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
 class RandomizedTest {
 
 	/*
@@ -63,7 +68,7 @@ class RandomizedTest {
 		String[] testQuestions = null; // Array for holding the completed, calculated questions
 		String[] randomizedTestQuestions = null;
 
-		while(keepGoing == 0) {
+		while (keepGoing == 0) {
 			do {
 				problemType = questionTypeSelection();
 			} while (problemType < 1 || problemType > 2); // Error check
@@ -83,9 +88,9 @@ class RandomizedTest {
 				finalAnswers = problemCalculator(randomizedTestQuestions);
 				fileCreation(randomizedTestQuestions, finalAnswers, questionNumber);
 			}
-	
-		System.out.println("Enter 0 to continue, or enter any other number to exit");
-		keepGoing = reader.nextInt();			
+
+			System.out.println("Enter 0 to continue, or enter any other number to exit");
+			keepGoing = reader.nextInt();
 		}
 	}
 
@@ -145,38 +150,37 @@ class RandomizedTest {
 		 * a number, saved as a variable The teacher will specify the range by which
 		 * they want to randomize the number (e.g. 1-10)
 		 */
-		Scanner s = new Scanner (System.in);
+		Scanner s = new Scanner(System.in);
 		Random r = new Random();
 		int randomizedNumber = 0;
 		String confirmation = "yes";
-		
+
 		while (confirmation.equals("yes")) {
 			System.out.print("Choose a number you want to randomize: ");
 			randomizedNumber = s.nextInt();
 			s.nextLine();
 			int i = 0;
-			
+
 			for (i = 0; i < numbers.length; i++) {
 				if (randomizedNumber == numbers[i]) {
 					System.out.print("Enter a range for the number to be randomized to (ex:4-15): ");
 					String range = s.nextLine();
-					
+
 					int index = range.indexOf("-");
 					String min = range.substring(0, index);
-					String max = range.substring(index+1, range.length());
+					String max = range.substring(index + 1, range.length());
 					int x = Integer.parseInt(min);
 					int y = Integer.parseInt(max);
-					int rand = r.nextInt(y)+x;
-					numbers[i] = rand;	
+					int rand = r.nextInt(y) + x;
+					numbers[i] = rand;
 				}
 			}
 			System.out.print("Do you want to randomizer another number (yes or no): ");
 			confirmation = s.nextLine();
 		}
 		System.out.println("These are the new numbers: " + Arrays.toString(numbers));
-		return numbers;       
+		return numbers;
 	}
-
 
 	public static int[] problemCalculator(String[] randomizedTestQuestions) {
 		return null; // Calculator method
@@ -201,11 +205,11 @@ class RandomizedTest {
 		 * (e.g. 1 = x, 2 = y) The method will ask the user for the equation, and to
 		 * substitute the numbers in the equation with the variables
 		 */
-		Scanner s = new Scanner (System.in);
-		 
+		Scanner s = new Scanner(System.in);
+
 		String[] strNumbers = new String[numbers.length];
 		for (int i = 0; i < numbers.length; i++) {
-		    strNumbers[i] = String.valueOf(numbers[i]);
+			strNumbers[i] = String.valueOf(numbers[i]);
 		}
 
 		System.out.println("Input variables (e.g. x,y,z) for each number (Don't use the same variable more than once)");
