@@ -295,17 +295,19 @@ class RandomizedTest {
 		 */
 		Scanner s = new Scanner(System.in);
 
-		String[] strNumbers = new String[numbers.length];
+		String[] strnumbers = new String[numbers.length];
 		for (int i = 0; i < numbers.length; i++) {
-			strNumbers[i] = String.valueOf(numbers[i]);
+			strnumbers[i] = String.valueOf(numbers[i]);
 		}
 
 		System.out.println("Input variables (e.g. x,y,z) for each number (Don't use the same variable more than once)");
-		for (int i = 0; i < strNumbers.length; i++) {
-			System.out.print("Input variable for " + strNumbers[i] + ": ");
+		for (int i = 0; i < strnumbers.length; i++) {
+			System.out.print("Input variable for " + strnumbers[i] + ": ");
 			String variable = s.nextLine();
-			strNumbers[i] = variable;
+			strnumbers[i] = variable;
 		}
-		System.out.println(Arrays.toString(strNumbers));
+		System.out.println(Arrays.toString(strnumbers));
+		return strnumbers;
+		return numbers
 	}
 }
