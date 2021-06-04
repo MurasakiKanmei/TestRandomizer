@@ -308,6 +308,5 @@ class RandomizedTest {
 		}
 		System.out.println(Arrays.toString(strtestNumbers));
 		return strtestNumbers;
-		return testNumbers;
 	}
 }
