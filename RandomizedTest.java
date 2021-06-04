@@ -110,27 +110,28 @@ class RandomizedTest {
 	 */
 
 	// JFrame and JLabel will be important
-	// myFrame frame = new MyFrame(); 
+	// myFrame frame = new MyFrame();
+	// myFrame frame = new MyFrame2(); 
 
 
 		// textbox field
 		MyFrame(){
-				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				this.setLayout(new FlowLayout());
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setLayout(new 	FlowLayout());
 
-				// Button to submit
-				JButton button = new JButton("Submit");
-				button.addActionListener(this);
+			// Button to submit
+			JButton button = new JButton("Submit");
+			button.addActionListener(this);
 
-				// Textfield
-				JTextField textField = new JTextField();
-				textField.setPreferredSize(new Dimension(250,40));
+			// Textfield
+			JTextField textField = new JTextField();
+			textField.setPreferredSize(new Dimension(250,40));
 
-				this.add(button);
-				this.add(textField);
-				this.pack();
-				this.setVisible(true);
-			}
+			this.add(button);
+			this.add(textField);
+			this.pack();
+			this.setVisible(true);
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -146,7 +147,7 @@ class RandomizedTest {
 
 		// Button Field
 
-		MyFrame(){
+		MyFrame2(){
 		
 			ImageIcon icon = new ImageIcon("point.png");
 			ImageIcon icon2 = new ImageIcon("face.png");
