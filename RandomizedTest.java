@@ -57,19 +57,22 @@ class RandomizedTest {
 
 	static Scanner reader = new Scanner(System.in);
 
-	public static void main(String[] args) {
+		public static void main(String[] args) {
 
 		String equation; // Variable for holding the equation itself
 		int problemType; // Variable for determining whether the question is a word problem or normal
 							// problem
 		int questionNumber = 0;
 		int keepGoing = 0;
+		int calculationQuestionNumber = 0;
+		int wordProblemQuestionNumber = 0;
 		int[] testNumbers = null; // Array for holding the numbers to be randomized
-		int[] finalAnswers = null;
+		// int[] finalAnswers = null;
 		String[] testQuestions = null; // Array for holding the completed, calculated questions
-		String[] randomizedTestQuestions = null;
+		int[] randomizedTestQuestions = null;
+		String[] randomizedWordQuestions = null;
 
-		while (keepGoing == 0) {
+		while(keepGoing == 0) {
 			do {
 				problemType = questionTypeSelection();
 			} while (problemType < 1 || problemType > 2); // Error check
@@ -77,8 +80,10 @@ class RandomizedTest {
 				System.out.println("Enter your equation:");
 				testNumbers = numberGatherer(reader.nextLine());
 				randomizedTestQuestions = randomizer(testNumbers);
-				finalAnswers = problemCalculator(randomizedTestQuestions);
-				fileCreation(randomizedTestQuestions, finalAnswers, questionNumber);
+				// finalAnswers = problemCalculator(randomizedTestQuestions);
+				fileCreation(randomizedTestQuestions, questionNumber);
+				calculationQuestionNumber++;
+				
 			}
 
 			if (problemType == 2) { // Calls word problem and number gatherer methods for word problem
@@ -86,12 +91,13 @@ class RandomizedTest {
 				testNumbers = numberGatherer(reader.nextLine());
 				wordProblemVariables();
 				randomizedTestQuestions = randomizer(testNumbers);
-				finalAnswers = problemCalculator(randomizedTestQuestions);
-				fileCreation(randomizedTestQuestions, finalAnswers, questionNumber);
+				// finalAnswers = problemCalculator(randomizedTestQuestions);
+				fileCreation(randomizedWordQuestions, questionNumber);
+				wordProblemQuestionNumber++;
 			}
-
-			System.out.println("Enter 0 to continue, or enter any other number to exit");
-			keepGoing = reader.nextInt();
+	
+		System.out.println("Enter 0 to continue, or enter any other number to exit");
+		keepGoing = reader.nextInt();			
 		}
 	}
 
