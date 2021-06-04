@@ -97,7 +97,8 @@ class RandomizedTest {
 			}
 	
 		System.out.println("Enter 0 to continue, or enter any other number to exit");
-		keepGoing = reader.nextInt();			
+		keepGoing = reader.nextInt();
+		reader.nextLine();	
 		}
 	}
 
