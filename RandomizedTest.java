@@ -231,7 +231,7 @@ class RandomizedTest {
 		return numbers;
 	}
 
-	public static int[] randomizer(int[] numbers) { // Test randomizer method
+	public static int[] randomizer(int[] testNumbers) { // Test randomizer method
 		/*
 		 * This method will need to take the numbers from the numberGatherer method It
 		 * will take the numbers and randomize them, before asking the teacher to select
@@ -249,8 +249,8 @@ class RandomizedTest {
 			s.nextLine();
 			int i = 0;
 
-			for (i = 0; i < numbers.length; i++) {
-				if (randomizedNumber == numbers[i]) {
+			for (i = 0; i < testNumbers.length; i++) {
+				if (randomizedNumber == testNumbers[i]) {
 					System.out.print("Enter a range for the number to be randomized to (ex:4-15): ");
 					String range = s.nextLine();
 
@@ -266,8 +266,8 @@ class RandomizedTest {
 			System.out.print("Do you want to randomizer another number (yes or no): ");
 			confirmation = s.nextLine();
 		}
-		System.out.println("These are the new numbers: " + Arrays.toString(numbers));
-		return numbers;
+		System.out.println("These are the new numbers: " + Arrays.toString(testNumbers));
+		return testNumbers;
 	}
 
 	public static int[] problemCalculator(String[] randomizedTestQuestions) {
