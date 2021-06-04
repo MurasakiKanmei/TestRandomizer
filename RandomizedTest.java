@@ -260,7 +260,7 @@ class RandomizedTest {
 					int x = Integer.parseInt(min);
 					int y = Integer.parseInt(max);
 					int rand = r.nextInt(y) + x;
-					numbers[i] = rand;
+					testNumbers[i] = rand;
 				}
 			}
 			System.out.print("Do you want to randomizer another number (yes or no): ");
