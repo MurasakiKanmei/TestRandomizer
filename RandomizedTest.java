@@ -89,8 +89,8 @@ class RandomizedTest {
 			if (problemType == 2) { // Calls word problem and number gatherer methods for word problem
 				System.out.println("Enter your word problem.");
 				testNumbers = numberGatherer(reader.nextLine());
-				wordProblemVariables();
 				randomizedTestQuestions = randomizer(testNumbers);
+				wordProblemVariables();
 				// finalAnswers = problemCalculator(randomizedTestQuestions);
 				fileCreation(randomizedWordQuestions, questionNumber);
 				wordProblemQuestionNumber++;
@@ -285,7 +285,7 @@ class RandomizedTest {
 		 */
 	}
 
-	public static void wordProblemVariables(int[] numbers) { // Word problem method
+		public static void wordProblemVariables(int[] testNumbers) { // Word problem method
 
 		/*
 		 * This method takes the numbers from word problems and assigns letter variables
@@ -295,19 +295,19 @@ class RandomizedTest {
 		 */
 		Scanner s = new Scanner(System.in);
 
-		String[] strnumbers = new String[numbers.length];
-		for (int i = 0; i < numbers.length; i++) {
-			strnumbers[i] = String.valueOf(numbers[i]);
+		String[] strtestNumbers = new String[testNumbers.length];
+		for (int i = 0; i < testNumbers.length; i++) {
+			strtestNumbers[i] = String.valueOf(testNumbers[i]);
 		}
 
 		System.out.println("Input variables (e.g. x,y,z) for each number (Don't use the same variable more than once)");
-		for (int i = 0; i < strnumbers.length; i++) {
-			System.out.print("Input variable for " + strnumbers[i] + ": ");
+		for (int i = 0; i < strtestNumbers.length; i++) {
+			System.out.print("Input variable for " + strtestNumbers[i] + ": ");
 			String variable = s.nextLine();
-			strnumbers[i] = variable;
+			strtestNumbers[i] = variable;
 		}
-		System.out.println(Arrays.toString(strnumbers));
-		return strnumbers;
-		return numbers
+		System.out.println(Arrays.toString(strtestNumbers));
+		return strtestNumbers;
+		return testNumbers;
 	}
 }
