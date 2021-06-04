@@ -271,14 +271,14 @@ class RandomizedTest {
 		return testNumbers;
 	}
 
-	public static int[] problemCalculator(String[] randomizedTestQuestions) {
+	/* public static int[] problemCalculator(String[] randomizedTestQuestions) {
 		return null; // Calculator method
 		/*
 		 * This method will need to take the randomized numbers and equation from the
 		 * previous method and calculate them
 		 */
 	}
-
+	*/ 
 	public static void fileCreation(String[] randomizedTestQuestions, int[] finalAnswers, int questionNumber) { // End method
 		/*
 		 * If the teacher tells the program not to continue, the program will print out
